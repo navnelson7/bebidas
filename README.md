@@ -1,6 +1,6 @@
 Este proyecto esta siendo creado con  [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Ejecutando el proyecto
 
 Para ejecutar el proyecto 
 
