@@ -6,8 +6,9 @@ const Formulario = () => {
         nombre: "",
         categoria: ''
     })
+   
      const {categorias} = useContext(CategoriasContext);     
-     const {buscarRecetas} = useContext({RecetasContext});
+     const {buscarRecetas, guardarConsultar} = useContext(RecetasContext);
      //funcion para leeer los contenidos 
      const obtenerDatosReceta = e => {
          guardarBusqueda({
@@ -18,7 +19,11 @@ const Formulario = () => {
     return (
         <form
             className="col-12"
-            onSubmit={buscarRecetas(busqueda)}
+            onSubmit={e => {
+                e.preventDefault();
+                buscarRecetas(busqueda);
+                guardarConsultar(true);
+            }}
         >
             <fieldset className="text-center">
                 <legend>Busca bebidas por caegorias</legend>
@@ -52,6 +57,7 @@ const Formulario = () => {
                     <input 
                         className="btn btn-block btn-primary"
                         value="Buscar Bebida"
+                        type="submit"
                     />
                 </div>
             </div>
