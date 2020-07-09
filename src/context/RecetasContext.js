@@ -18,6 +18,7 @@ const RecetasProvider = (props) => {
                 const resultado = await axios.get(url);
                 //console.log(resultado);
                 guardarRecetas(resultado.data.drinks);
+
          }
          obtenerRecetas();
          }
@@ -27,6 +28,7 @@ const RecetasProvider = (props) => {
     return (
         <RecetasContext.Provider
             value = {{
+                recetas,
                 buscarRecetas,
                 guardarConsultar
             }}
