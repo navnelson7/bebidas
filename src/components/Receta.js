@@ -1,10 +1,8 @@
-import React,{useContext, useEffect, useState} from 'react';
+import React,{useContext, useState} from 'react';
 import {ModalContext} from '../context/ModalContext';
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-
-import axios from 'axios';
 
 function getModalStyle() {
     const top = 50 ;
@@ -20,7 +18,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
     paper: {
       position: 'absolute',
-      width: 600,
+      width: 450,
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
@@ -39,6 +37,18 @@ const Receta = ({receta}) => {
     }
     //extraer los valores del context
     const {informacion, guardarIdReceta, guardarReceta} = useContext(ModalContext);
+    //mostrando los ingredientes
+    const mostrarIgredientes = informacion => {
+        let ingredientes = [];
+        for(let i =1; i<16; i++){
+            if( informacion[`strIngredient${i}`] ){
+                ingredientes.push(
+                    <li>{informacion[`strIngredient${i}`]} {informacion[`strMeasure${i}`]}</li>
+                )
+            }
+        }
+        return ingredientes;
+    }
     return ( 
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -70,6 +80,10 @@ const Receta = ({receta}) => {
                                 {informacion.strInstructions}
                             </p>
                             <img className="img-fluid my-4" src={informacion.strDrinkThumb} alt={informacion.strDrink}/>
+                            <h3>Ingredientes y cantidades</h3>
+                            <ul>
+                                {mostrarIgredientes(informacion)}
+                            </ul>
                         </div>
                     </Modal>
                 </div>

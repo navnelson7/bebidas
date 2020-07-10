@@ -1,4 +1,4 @@
-import React,{createContext,useContext,useEffect, useState} from 'react';
+import React,{createContext,useEffect, useState} from 'react';
 import axios from 'axios';
 //creando el context
 export const ModalContext = createContext();
