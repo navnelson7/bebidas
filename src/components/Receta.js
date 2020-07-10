@@ -38,7 +38,7 @@ const Receta = ({receta}) => {
         setOpen(false);
     }
     //extraer los valores del context
-    const {guardarIdReceta} = useContext(ModalContext);
+    const {informacion, guardarIdReceta, guardarReceta} = useContext(ModalContext);
     return ( 
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -59,11 +59,17 @@ const Receta = ({receta}) => {
                         open={open}
                         onClose={() =>{
                             guardarIdReceta(null);
+                            guardarReceta({});
                             handleClose();
                         }}
                     >
                         <div className={classes.paper} style={modalStyle}>
-                            <h1>Desde el Modal</h1>
+                            <h2>{informacion.strDrink}</h2>
+                            <h3 className="mt-4">Instrucciones</h3>
+                            <p>
+                                {informacion.strInstructions}
+                            </p>
+                            <img className="img-fluid my-4" src={informacion.strDrinkThumb} alt={informacion.strDrink}/>
                         </div>
                     </Modal>
                 </div>
